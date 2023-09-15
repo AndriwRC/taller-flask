@@ -1,0 +1,46 @@
+/* Basic styles for css editing */
+:root {
+    --primary-color: #b46060; /* rgb(180, 96, 96) */
+    --secondary-color: #ffbf9b; /* rgb(255, 191, 155) */
+    --secondary-color-80: rgba(255, 191, 155, 0.8);
+    --light: #fff4e0;
+    --black-30: #999999;
+    --black-60: #4d4d4d;
+    --black-100: #1e1e1e;
+    --success: #2cbf6d;
+    --error: #d84a49;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    font-size: 62.5%;
+    font-family: sans-serif;
+}
+ul,
+ol {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+h1 {
+    font-size: 4rem;
+}
+.tasks-container {
+    width: 900px;
+}
+.task {
+    width: 100%;
+    height: 30px;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 2rem;
+}
+.task__icon {
+    width: 30px;
+    height: 30px;
+}
