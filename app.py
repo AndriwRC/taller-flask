@@ -30,6 +30,9 @@ app = Flask(__name__)
 def index(db_info=db_info):
     return render_template('index.html', db_info=db_info)
 
+@app.route("/add/")
+def add_task():
+    return render_template('add.html')
 
 if __name__ == '__main__':
     app.run()
