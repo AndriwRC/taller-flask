@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Index</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <section>
+        <h1>Tareas</h1>
+        <ul class="tasks-container">
+            {% for task in db_info %}
+            <li class="task">
+                <span class="task__id">{{task[0]}}</span>
+                <span class="task__text">{{task[1]}}</span>
+                <span class="task__icon">
+                    {% if task[2] %}
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                      </svg>
+                    {%else%}                      
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 7.5A2.25 2.25 0 017.5 5.25h9a2.25 2.25 0 012.25 2.25v9a2.25 2.25 0 01-2.25 2.25h-9a2.25 2.25 0 01-2.25-2.25v-9z" />
+                      </svg>
+                      
+                    {%endif%}
+                </span>
+            </li>
+            {%endfor%}
+        </ul>
+
+    </section>
+
+</body>
+</html>
