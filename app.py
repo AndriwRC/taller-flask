@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
 import mysql.connector
 
 # Configura los parámetros de conexión
@@ -32,21 +32,27 @@ def close_connection(cursor, conn):
     conn.close()
 
 
-conn, cursor = make_connection()
-db_info = query_db_info(cursor)
-close_connection(conn, cursor)
-
 app = Flask(__name__)
 
 
-@app.route("/")
-def index(db_info=db_info):
+@app.route("/", methods=["POST", "GET"])
+def index():
+    conn, cursor = make_connection()
+
+    if request.method == "POST":
+        description = request.form["description"]
+        cursor.execute(f"INSERT INTO Tareas (Descripcion) VALUES ('{description}')")
+        conn.commit()
+
+    db_info = query_db_info(cursor)
+    close_connection(conn, cursor)
+
     return render_template("index.html", db_info=db_info)
 
 
-@app.route("/add/")
+@app.route("/new-task/")
 def add_task():
-    return render_template("add.html")
+    return render_template("new-task.html")
 
 
 if __name__ == "__main__":
