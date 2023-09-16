@@ -35,6 +35,7 @@ h1 {
 .task__icon {
     width: 30px;
     height: 30px;
+    color: black;
 }
 .add-task__link {
     display: block;

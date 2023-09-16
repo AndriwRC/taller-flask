@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect
 import mysql.connector
 
+
 # Configura los parámetros de conexión
 config = {
     "user": "public",
@@ -53,6 +54,23 @@ def index():
 @app.route("/new-task/")
 def add_task():
     return render_template("new-task.html")
+
+
+@app.route("/task/<int:id>/complete/")
+def complete_task(id):
+    conn, cursor = make_connection()
+
+    cursor.execute(f"SELECT Completado FROM Tareas WHERE Id = {id}")
+    status = cursor.fetchone()
+    if status[0]:
+        update = f"UPDATE Tareas SET Completado = FALSE WHERE Id = {id}"
+    else:
+        update = f"UPDATE Tareas SET Completado = TRUE WHERE Id = {id}"
+    cursor.execute(update)
+    conn.commit()
+
+    close_connection(conn, cursor)
+    return redirect("/")
 
 
 if __name__ == "__main__":
