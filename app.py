@@ -73,5 +73,19 @@ def complete_task(id):
     return redirect("/")
 
 
+@app.route("/task/<int:id>/delete/")
+def delete_task(id):
+    conn, cursor = make_connection()
+
+    cursor.execute(f"SELECT * FROM Tareas WHERE Id = {id}")
+    task = cursor.fetchone()
+    if task:
+        cursor.execute(f"DELETE FROM Tareas WHERE Id = {id}")
+    conn.commit()
+
+    close_connection(conn, cursor)
+    return redirect("/")
+
+
 if __name__ == "__main__":
     app.run()
